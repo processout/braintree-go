@@ -1,8 +1,9 @@
 package braintree
 
 import (
-	"github.com/lionelbarrow/braintree-go/nullable"
 	"time"
+
+	"github.com/lionelbarrow/braintree-go/nullable"
 )
 
 type Transaction struct {
@@ -96,7 +97,7 @@ type Transactions struct {
 
 type TransactionOptions struct {
 	SubmitForSettlement              bool `xml:"submit-for-settlement,omitempty"`
-	StoreInVault                     bool `xml:"store-in-vault,omitempty"`
+	StoreInVaultOnSuccess            bool `xml:"store-in-vault-on-success,omitempty"`
 	AddBillingAddressToPaymentMethod bool `xml:"add-billing-address-to-payment-method,omitempty"`
 	StoreShippingAddressInVault      bool `xml:"store-shipping-address-in-vault,omitempty"`
 }
