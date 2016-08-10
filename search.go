@@ -2,6 +2,7 @@ package braintree
 
 import (
 	"encoding/xml"
+	"time"
 )
 
 type SearchQuery struct {
@@ -33,6 +34,39 @@ type RangeField struct {
 	Max     float64 `xml:"max,omitempty"`
 }
 
+type TimeRangeField struct {
+	XMLName xml.Name
+	Is      *DateTime `xml:"is,omitempty"`
+	Min     *DateTime `xml:"min,omitempty"`
+	Max     *DateTime `xml:"max,omitempty"`
+}
+
+const iso8601 = "2006-01-02T15:04:05-0700"
+
+func (t *TimeRangeField) SetIs(date *time.Time) {
+	t.Is = &DateTime{
+		Type:  "datetime",
+		Value: date.Format(iso8601),
+	}
+}
+func (t *TimeRangeField) SetMax(date *time.Time) {
+	t.Max = &DateTime{
+		Type:  "datetime",
+		Value: date.Format(iso8601),
+	}
+}
+func (t *TimeRangeField) SetMin(date *time.Time) {
+	t.Min = &DateTime{
+		Type:  "datetime",
+		Value: date.Format(iso8601),
+	}
+}
+
+type DateTime struct {
+	Type  string `xml:"type,attr"`
+	Value string `xml:",chardata"`
+}
+
 type MultiField struct {
 	XMLName xml.Name
 	Type    string   `xml:"type,attr"` // type=array
@@ -47,6 +81,12 @@ func (s *SearchQuery) AddTextField(field string) *TextField {
 
 func (s *SearchQuery) AddRangeField(field string) *RangeField {
 	f := &RangeField{XMLName: xml.Name{Local: field}}
+	s.Fields = append(s.Fields, f)
+	return f
+}
+
+func (s *SearchQuery) AddTimeRangeField(field string) *TimeRangeField {
+	f := &TimeRangeField{XMLName: xml.Name{Local: field}}
 	s.Fields = append(s.Fields, f)
 	return f
 }
