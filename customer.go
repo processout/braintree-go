@@ -15,6 +15,9 @@ type Customer struct {
 	CreditCard         *CreditCard  `xml:"credit-card,omitempty"`
 	CreditCards        *CreditCards `xml:"credit-cards,omitempty"`
 	PaymentMethodNonce string       `xml:"payment-method-nonce,omitempty"`
+	PaymentMethods     []struct {
+		Token string `xml:"token,omitempty"`
+	} `xml:"payment-methods,omitempty"`
 }
 
 // DefaultCreditCard returns the default credit card, or nil
