@@ -20,6 +20,13 @@ type Customer struct {
 	} `xml:"payment-methods,omitempty"`
 }
 
+/* :credit_card => {
+   :payment_method_nonce => nonce_from_the_client,
+   :options => {
+     :verify_card => true
+   }
+*/
+
 // DefaultCreditCard returns the default credit card, or nil
 func (c *Customer) DefaultCreditCard() *CreditCard {
 	for _, card := range c.CreditCards.CreditCard {

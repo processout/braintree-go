@@ -55,6 +55,7 @@ type webhookSubject struct {
 	Subscription     *Subscription    `xml:",omitempty"`
 	MerchantAccount  *MerchantAccount `xml:"merchant-account,omitempty"`
 	Transaction      *Transaction     `xml:",omitempty"`
+	Dispute          *Dispute         `xml:"dispute,omitempty"`
 
 	// Remaining Fields:
 	// partner_merchant
