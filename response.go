@@ -112,7 +112,9 @@ func (r *Response) apiError() error {
 		return &b
 	}
 	if r.StatusCode > 299 {
-		return fmt.Errorf("%s (%d)", http.StatusText(r.StatusCode), r.StatusCode)
+		b.ErrorMessage = r.Status
+		b.statusCode = r.StatusCode
+		return &b
 	}
 	return nil
 }
