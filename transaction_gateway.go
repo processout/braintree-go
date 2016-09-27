@@ -113,10 +113,11 @@ func (g *TransactionGateway) Find(id string) (*Transaction, error) {
 
 // Search finds all transactions matching the search query.
 func (g *TransactionGateway) Search(query *SearchQuery) (*TransactionSearchResult, error) {
-	resp, err := g.execute("POST", "transactions/advanced_search", query)
+	resp, err := g.execute("POST", "transactions/advanced_search_ids", query)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println(string(resp.Body))
 	var v TransactionSearchResult
 	err = xml.Unmarshal(resp.Body, &v)
 	if err != nil {

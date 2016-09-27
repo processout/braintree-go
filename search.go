@@ -45,25 +45,21 @@ const iso8601 = "2006-01-02T15:04:05-0700"
 
 func (t *TimeRangeField) SetIs(date *time.Time) {
 	t.Is = &DateTime{
-		Type:  "datetime",
 		Value: date.Format(iso8601),
 	}
 }
 func (t *TimeRangeField) SetMax(date *time.Time) {
 	t.Max = &DateTime{
-		Type:  "datetime",
 		Value: date.Format(iso8601),
 	}
 }
 func (t *TimeRangeField) SetMin(date *time.Time) {
 	t.Min = &DateTime{
-		Type:  "datetime",
 		Value: date.Format(iso8601),
 	}
 }
 
 type DateTime struct {
-	Type  string `xml:"type,attr"`
 	Value string `xml:",chardata"`
 }
 

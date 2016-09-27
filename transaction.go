@@ -105,9 +105,11 @@ type TransactionOptions struct {
 }
 
 type TransactionSearchResult struct {
-	XMLName           string              `xml:"credit-card-transactions"`
-	CurrentPageNumber *nullable.NullInt64 `xml:"current-page-number"`
-	PageSize          *nullable.NullInt64 `xml:"page-size"`
-	TotalItems        *nullable.NullInt64 `xml:"total-items"`
-	Transactions      []*Transaction      `xml:"transaction"`
+	XMLName        string              `xml:"search-results"`
+	PageSize       *nullable.NullInt64 `xml:"page-size"`
+	TransactionIDs []string            `xml:"ids>item"`
+}
+
+type IDs struct {
+	Type string `xml:"type,attr"`
 }
