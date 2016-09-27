@@ -41,6 +41,7 @@ type Subscription struct {
 	Options                 *SubscriptionOptions `xml:"options,omitempty"`
 	// AddOns                  []interface{} `xml:"add-ons,omitempty"`
 	// Descriptor              interface{}   `xml:"descriptor,omitempty"`   // struct with name, phone
+	Descriptor *Descriptor `xml:"descriptor,omitempty"`
 }
 
 type Subscriptions struct {

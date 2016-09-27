@@ -38,7 +38,14 @@ type Transaction struct {
 	ProcessorAuthorizationCode string    `xml:"processor-authorization-code,omitempty"`
 	SettlementBatchId          string    `xml:"settlement-batch-id,omitempty"`
 
-	SubscriptionID string `xml:"subscription-id,omitempty"`
+	SubscriptionID string      `xml:"subscription-id,omitempty"`
+	Descriptor     *Descriptor `xml:"descriptor,omitempty"`
+}
+
+type Descriptor struct {
+	Name  string `xml:"name"`
+	Phone string `xml:"phone"`
+	URL   string `xml:"url"`
 }
 
 // TODO: not all transaction fields are implemented yet, here are the missing fields (add on demand)
