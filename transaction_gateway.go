@@ -117,7 +117,6 @@ func (g *TransactionGateway) Search(query *SearchQuery) (*TransactionSearchResul
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println(string(resp.Body))
 	var v TransactionSearchResult
 	err = xml.Unmarshal(resp.Body, &v)
 	if err != nil {
