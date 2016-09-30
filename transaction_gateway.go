@@ -3,8 +3,6 @@ package braintree
 import (
 	"encoding/xml"
 	"fmt"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
 type TransactionGateway struct {
@@ -145,7 +143,6 @@ type transactions50 struct {
 func (g *TransactionGateway) GetAll(ids []string) ([]Transaction, error) {
 	var all []Transaction
 
-	spew.Dump(len(ids))
 	for i := 0; i < len(ids); i += 50 {
 		top := i + 50
 		if top > len(ids) {
