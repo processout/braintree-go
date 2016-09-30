@@ -7,10 +7,13 @@ import (
 )
 
 type Transaction struct {
-	XMLName             string               `xml:"transaction"`
-	Id                  string               `xml:"id,omitempty"`
-	CustomerID          string               `xml:"customer-id,omitempty"`
-	Status              string               `xml:"status,omitempty"`
+	XMLName    string `xml:"transaction"`
+	Id         string `xml:"id,omitempty"`
+	CustomerID string `xml:"customer-id,omitempty"`
+
+	Status        string         `xml:"status,omitempty"`
+	StatusHistory *StatusHistory `xml:"status-history,omitempty"`
+
 	Type                string               `xml:"type,omitempty"`
 	Amount              *Decimal             `xml:"amount"`
 	CurrencyISOCode     string               `xml:"currency-iso-code,omitempty"`
@@ -38,8 +41,21 @@ type Transaction struct {
 	ProcessorAuthorizationCode string    `xml:"processor-authorization-code,omitempty"`
 	SettlementBatchId          string    `xml:"settlement-batch-id,omitempty"`
 
-	SubscriptionID string      `xml:"subscription-id,omitempty"`
-	Descriptor     *Descriptor `xml:"descriptor,omitempty"`
+	SubscriptionID        string      `xml:"subscription-id,omitempty"`
+	Descriptor            *Descriptor `xml:"descriptor,omitempty"`
+	PaymentInstrumentType string      `xml:"payment-instrument-type,omitempty"`
+}
+
+type StatusHistory struct {
+	Events []StatusEvent `xml:"status-event"`
+}
+
+type StatusEvent struct {
+	Amount            string `xml:"amount"`
+	User              string `xml:"user"`
+	TransactionSource string `xml:"transaction-source"`
+	Timestamp         string `xml:"timestamp"`
+	Status            string `xml:"status"`
 }
 
 type Descriptor struct {

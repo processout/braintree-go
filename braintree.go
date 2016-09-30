@@ -3,7 +3,6 @@ package braintree
 import (
 	"bytes"
 	"encoding/xml"
-	"fmt"
 	"log"
 	"net/http"
 )
@@ -69,7 +68,6 @@ func (g *Braintree) execute(method, path string, xmlObj interface{}) (*Response,
 		if err != nil {
 			return nil, err
 		}
-		fmt.Println(string(xmlBody))
 		_, err = buf.Write(xmlBody)
 		if err != nil {
 			return nil, err
@@ -77,7 +75,6 @@ func (g *Braintree) execute(method, path string, xmlObj interface{}) (*Response,
 	}
 
 	url := g.MerchantURL() + "/" + path
-	fmt.Println(url)
 
 	if g.Logger != nil {
 		g.Logger.Printf("> %s %s\n%s", method, url, buf.String())
