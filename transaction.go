@@ -34,7 +34,7 @@ type Transaction struct {
 	DisbursementDetails *DisbursementDetails `xml:"disbursement-details,omitempty"`
 
 	RefundId                   string   `xml:"refund-id,omitempty"`
-	RefundIds                  []string `xml:"refund-ids>item,omitempty"`
+	RefundIds                  []string `xml:"refund-ids,omitempty>item,omitempty"`
 	RefundedTransactionId      *string  `xml:"refunded-transaction-id,omitempty"`
 	ProcessorResponseCode      int      `xml:"processor-response-code,omitempty"`
 	ProcessorResponseText      string   `xml:"processor-response-text,omitempty"`
