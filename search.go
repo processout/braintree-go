@@ -20,11 +20,11 @@ type SearchResults struct {
 
 type TextField struct {
 	XMLName    xml.Name
-	Is         string `xml:"is,omitempty"`
-	IsNot      string `xml:"is-not,omitempty"`
-	StartsWith string `xml:"starts-with,omitempty"`
-	EndsWith   string `xml:"ends-with,omitempty"`
-	Contains   string `xml:"contains,omitempty"`
+	Is         *string `xml:"is,omitempty"`
+	IsNot      *string `xml:"is-not,omitempty"`
+	StartsWith *string `xml:"starts-with,omitempty"`
+	EndsWith   *string `xml:"ends-with,omitempty"`
+	Contains   *string `xml:"contains,omitempty"`
 }
 
 type RangeField struct {

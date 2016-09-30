@@ -3,6 +3,8 @@ package braintree
 import (
 	"encoding/xml"
 	"fmt"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 type TransactionGateway struct {
@@ -123,6 +125,48 @@ func (g *TransactionGateway) Search(query *SearchQuery) (*TransactionSearchResul
 		return nil, err
 	}
 	return &v, err
+}
+
+type TransactionGetter struct {
+	XMLName xml.Name `xml:"search"`
+	Data    TrIDs    `xml:"ids"`
+}
+
+type TrIDs struct {
+	Type string   `xml:"type,attr"`
+	IDs  []string `xml:"item"`
+}
+
+type transactions50 struct {
+	XMLName      xml.Name      `xml:"credit-card-transactions"`
+	Transactions []Transaction `xml:"transaction"`
+}
+
+func (g *TransactionGateway) GetAll(ids []string) ([]Transaction, error) {
+	var all []Transaction
+
+	spew.Dump(len(ids))
+	for i := 0; i < len(ids); i += 50 {
+		top := i + 50
+		if top > len(ids) {
+			top = i + len(ids)%50
+		}
+
+		// Build xml
+		tg := TransactionGetter{Data: TrIDs{Type: "array", IDs: ids[i:top]}}
+		resp, err := g.execute("POST", "transactions/advanced_search", tg)
+		if err != nil {
+			return nil, err
+		}
+
+		var v transactions50
+		err = xml.Unmarshal(resp.Body, &v)
+		if err != nil {
+			return nil, err
+		}
+		all = append(all, v.Transactions...)
+	}
+	return all, nil
 }
 
 type testOperationPerformedInProductionError struct {
