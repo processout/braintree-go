@@ -33,8 +33,14 @@ type Transaction struct {
 	UpdatedAt           *time.Time           `xml:"updated-at,omitempty"`
 	DisbursementDetails *DisbursementDetails `xml:"disbursement-details,omitempty"`
 
-	RefundId                   string  `xml:"refund-id,omitempty"`
-	RefundIds                  *Refund `xml:"refund-ids,omitempty"`
+	RefundId  string  `xml:"refund-id,omitempty"`
+	RefundIds *Refund `xml:"refund-ids,omitempty"`
+
+	AVSErrorCode                 string `xml:"avs-error-response-code,omitempty"`
+	AVSPostalCodeResponseCode    string `xml:"avs-postal-code-response-code,omitempty"`
+	AVSStreetAddressResponseCode string `xml:"avs-street-address-response-code,omitempty"`
+	CVVResponseCode              string `xml:"cvv-response-code,omitempty"`
+
 	RefundedTransactionId      *string `xml:"refunded-transaction-id,omitempty"`
 	ProcessorResponseCode      int     `xml:"processor-response-code,omitempty"`
 	ProcessorResponseText      string  `xml:"processor-response-text,omitempty"`
