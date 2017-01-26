@@ -42,7 +42,7 @@ type Transaction struct {
 	CVVResponseCode              string `xml:"cvv-response-code,omitempty"`
 
 	RefundedTransactionId      *string `xml:"refunded-transaction-id,omitempty"`
-	ProcessorResponseCode      int     `xml:"processor-response-code,omitempty"`
+	ProcessorResponseCode      string  `xml:"processor-response-code,omitempty"`
 	ProcessorResponseText      string  `xml:"processor-response-text,omitempty"`
 	ProcessorAuthorizationCode string  `xml:"processor-authorization-code,omitempty"`
 	SettlementBatchId          string  `xml:"settlement-batch-id,omitempty"`
