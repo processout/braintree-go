@@ -14,21 +14,26 @@ type Transaction struct {
 	Status        string         `xml:"status,omitempty"`
 	StatusHistory *StatusHistory `xml:"status-history,omitempty"`
 
-	Type                string               `xml:"type,omitempty"`
-	Amount              *Decimal             `xml:"amount"`
-	CurrencyISOCode     string               `xml:"currency-iso-code,omitempty"`
-	Tax                 *Decimal             `xml:"tax-amount"`
-	OrderId             string               `xml:"order-id,omitempty"`
-	PaymentMethodToken  string               `xml:"payment-method-token,omitempty"`
-	PaymentMethodNonce  string               `xml:"payment-method-nonce,omitempty"`
-	MerchantAccountId   string               `xml:"merchant-account-id,omitempty"`
-	PlanId              string               `xml:"plan-id,omitempty"`
-	CreditCard          *CreditCard          `xml:"credit-card,omitempty"`
-	Customer            *Customer            `xml:"customer,omitempty"`
-	BillingAddress      *Address             `xml:"billing,omitempty"`
-	ShippingAddress     *Address             `xml:"shipping,omitempty"`
-	Options             *TransactionOptions  `xml:"options,omitempty"`
-	ServiceFeeAmount    *Decimal             `xml:"service-fee-amount,attr,omitempty"`
+	Type               string              `xml:"type,omitempty"`
+	Amount             *Decimal            `xml:"amount"`
+	CurrencyISOCode    string              `xml:"currency-iso-code,omitempty"`
+	Tax                *Decimal            `xml:"tax-amount"`
+	OrderId            string              `xml:"order-id,omitempty"`
+	PaymentMethodToken string              `xml:"payment-method-token,omitempty"`
+	PaymentMethodNonce string              `xml:"payment-method-nonce,omitempty"`
+	MerchantAccountId  string              `xml:"merchant-account-id,omitempty"`
+	PlanId             string              `xml:"plan-id,omitempty"`
+	CreditCard         *CreditCard         `xml:"credit-card,omitempty"`
+	Customer           *Customer           `xml:"customer,omitempty"`
+	BillingAddress     *Address            `xml:"billing,omitempty"`
+	ShippingAddress    *Address            `xml:"shipping,omitempty"`
+	Options            *TransactionOptions `xml:"options,omitempty"`
+
+	FeeAmount *Decimal `xml:"transaction-fee-amount"`
+
+	ServiceFeeAmount      *Decimal `xml:"service-fee-amount,omitempty"`
+	ServiceFeeTransaction string   `xml:"transaction-fee-currency-iso-code,omitempty"`
+
 	CreatedAt           *time.Time           `xml:"created-at,omitempty"`
 	UpdatedAt           *time.Time           `xml:"updated-at,omitempty"`
 	DisbursementDetails *DisbursementDetails `xml:"disbursement-details,omitempty"`
