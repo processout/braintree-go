@@ -89,17 +89,24 @@ func (r *Response) discounts() ([]Discount, error) {
 
 func (r *Response) unpackBody() error {
 	if len(r.Body) == 0 {
-		b, err := gzip.NewReader(r.Response.Body)
+		// read the whole body
+		buf, err := ioutil.ReadAll(r.Response.Body)
 		if err != nil {
 			return err
 		}
-		defer r.Response.Body.Close()
 
-		buf, err := ioutil.ReadAll(b)
-		if err != nil {
-			return err
-		}
 		r.Body = buf
+
+		// attempt to decode it with gzip
+		b, err := gzip.NewReader(bytes.NewReader(r.Body))
+		if err == nil {
+			defer b.Close()
+			buf, err := ioutil.ReadAll(b)
+			if err != nil {
+				return err
+			}
+			r.Body = buf
+		}
 	}
 	return nil
 }
