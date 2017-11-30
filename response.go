@@ -1,6 +1,7 @@
 package braintree
 
 import (
+	"bytes"
 	"compress/gzip"
 	"encoding/xml"
 	"fmt"
