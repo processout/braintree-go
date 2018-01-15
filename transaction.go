@@ -41,6 +41,8 @@ type Transaction struct {
 	RefundId  string  `xml:"refund-id,omitempty"`
 	RefundIds *Refund `xml:"refund-ids,omitempty"`
 
+	Disputes []Dispute `xml:"disputes,omitempty"`
+
 	AVSErrorCode                 string `xml:"avs-error-response-code,omitempty"`
 	AVSPostalCodeResponseCode    string `xml:"avs-postal-code-response-code,omitempty"`
 	AVSStreetAddressResponseCode string `xml:"avs-street-address-response-code,omitempty"`
