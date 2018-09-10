@@ -1,20 +1,24 @@
 package braintree
 
-import "github.com/processout/braintree-go/nullable"
+import (
+	"github.com/processout/braintree-go/customfields"
+	"github.com/processout/braintree-go/nullable"
+)
 
 type Customer struct {
-	XMLName            string       `xml:"customer"`
-	Id                 string       `xml:"id,omitempty"`
-	FirstName          string       `xml:"first-name,omitempty"`
-	LastName           string       `xml:"last-name,omitempty"`
-	Company            string       `xml:"company,omitempty"`
-	Email              string       `xml:"email,omitempty"`
-	Phone              string       `xml:"phone,omitempty"`
-	Fax                string       `xml:"fax,omitempty"`
-	Website            string       `xml:"website,omitempty"`
-	CreditCard         *CreditCard  `xml:"credit-card,omitempty"`
-	CreditCards        *CreditCards `xml:"credit-cards,omitempty"`
-	PaymentMethodNonce string       `xml:"payment-method-nonce,omitempty"`
+	XMLName            string                    `xml:"customer"`
+	Id                 string                    `xml:"id,omitempty"`
+	FirstName          string                    `xml:"first-name,omitempty"`
+	LastName           string                    `xml:"last-name,omitempty"`
+	Company            string                    `xml:"company,omitempty"`
+	Email              string                    `xml:"email,omitempty"`
+	Phone              string                    `xml:"phone,omitempty"`
+	Fax                string                    `xml:"fax,omitempty"`
+	Website            string                    `xml:"website,omitempty"`
+	CustomFields       customfields.CustomFields `xml:"custom-fields"`
+	CreditCard         *CreditCard               `xml:"credit-card,omitempty"`
+	CreditCards        *CreditCards              `xml:"credit-cards,omitempty"`
+	PaymentMethodNonce string                    `xml:"payment-method-nonce,omitempty"`
 	PaymentMethods     []struct {
 		Token string `xml:"token,omitempty"`
 	} `xml:"payment-methods,omitempty"`
