@@ -145,6 +145,7 @@ type TransactionOptions struct {
 	StoreInVaultOnSuccess            bool `xml:"store-in-vault-on-success,omitempty"`
 	AddBillingAddressToPaymentMethod bool `xml:"add-billing-address-to-payment-method,omitempty"`
 	StoreShippingAddressInVault      bool `xml:"store-shipping-address-in-vault,omitempty"`
+	SkipCVV                          bool `xml:"skip-cvv,omitempty"`
 }
 
 type TransactionSearchResult struct {
