@@ -12,6 +12,8 @@ type Dispute struct {
 	Kind            string   `xml:"kind"`
 	Reason          string   `xml:"reason"`
 
+	Transaction *Transaction `xml:"transaction"`
+
 	Status string `xml:"status"`
 }
 
