@@ -84,7 +84,7 @@ func TestCustomer(t *testing.T) {
 	// Search
 	query := new(SearchQuery)
 	f := query.AddTextField("first-name")
-	f.Is = newFirstName
+	f.Is = &newFirstName
 	searchResult, err := testGateway.Customer().Search(query)
 	if err != nil {
 		t.Fatal(err)

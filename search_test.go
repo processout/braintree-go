@@ -5,15 +5,19 @@ import (
 	"testing"
 )
 
+func strp(s string) *string {
+	return &s
+}
+
 func TestSearchXMLEncode(t *testing.T) {
 	s := new(SearchQuery)
 
 	f := s.AddTextField("customer-first-name")
-	f.Is = "A"
-	f.IsNot = "B"
-	f.StartsWith = "C"
-	f.EndsWith = "D"
-	f.Contains = "E"
+	f.Is = strp("A")
+	f.IsNot = strp("B")
+	f.StartsWith = strp("C")
+	f.EndsWith = strp("D")
+	f.Contains = strp("E")
 
 	f2 := s.AddRangeField("amount")
 	f2.Is = 15.01

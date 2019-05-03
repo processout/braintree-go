@@ -16,13 +16,13 @@ func TestDisbursementTransactions(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if !result.TotalItems.Valid || result.TotalItems.Int64 != 1 {
+	if len(result.TransactionIDs) != 1 {
 		t.Fatal(result)
 	}
 
-	txn := result.Transactions[0]
-	if txn.Id != "dskdmb" {
-		t.Fatal(txn.Id)
+	txn := result.TransactionIDs[0]
+	if txn != "dskdmb" {
+		t.Fatal(txn)
 	}
 
 }

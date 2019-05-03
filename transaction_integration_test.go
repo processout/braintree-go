@@ -93,21 +93,15 @@ func TestTransactionSearch(t *testing.T) {
 
 	query := new(SearchQuery)
 	f := query.AddTextField("customer-first-name")
-	f.Is = name0
+	f.Is = strp(name0)
 
 	result, err := txg.Search(query)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	if !result.TotalItems.Valid || result.TotalItems.Int64 != 1 {
-		t.Fatal(result.Transactions)
-	}
-
-	tx := result.Transactions[0]
-	if x := tx.Customer.FirstName; x != name0 {
-		t.Log(name0)
-		t.Fatal(x)
+	if len(result.TransactionIDs) != 1 {
+		t.Fatal(result.TransactionIDs)
 	}
 }
 
@@ -189,7 +183,6 @@ func TestAllTransactionFields(t *testing.T) {
 		},
 		Options: &TransactionOptions{
 			SubmitForSettlement:              true,
-			StoreInVault:                     true,
 			AddBillingAddressToPaymentMethod: true,
 			StoreShippingAddressInVault:      true,
 		},
@@ -418,7 +411,7 @@ func TestTransactionCreateSettleAndFullRefund(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if txn.RefundIds != nil && (*txn.RefundIds)[0] != refundTxn.Id {
+	if txn.RefundIds != nil && (*txn.RefundIds).IDs[0] != refundTxn.Id {
 		t.Fatal(*txn.RefundIds)
 	}
 
