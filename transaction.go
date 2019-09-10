@@ -58,6 +58,8 @@ type Transaction struct {
 	SubscriptionID        string      `xml:"subscription-id,omitempty"`
 	Descriptor            *Descriptor `xml:"descriptor,omitempty"`
 	PaymentInstrumentType string      `xml:"payment-instrument-type,omitempty"`
+	TransactionSource     string      `xml:"transaction-source,omitempty"`
+	Recurring             bool        `xml:"recurring,omitempty"`
 }
 
 type Refund struct {
