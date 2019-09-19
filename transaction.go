@@ -28,8 +28,8 @@ type Transaction struct {
 	BillingAddress     *Address            `xml:"billing,omitempty"`
 	ShippingAddress    *Address            `xml:"shipping,omitempty"`
 	Options            *TransactionOptions `xml:"options,omitempty"`
-
-	FeeAmount *Decimal `xml:"transaction-fee-amount"`
+	ExternalVault      *ExternalVault      `xml:"external-vault,omitempty"`
+	FeeAmount          *Decimal            `xml:"transaction-fee-amount"`
 
 	ServiceFeeAmount      *Decimal `xml:"service-fee-amount,omitempty"`
 	ServiceFeeTransaction string   `xml:"transaction-fee-currency-iso-code,omitempty"`
@@ -68,6 +68,11 @@ type Refund struct {
 
 type StatusHistory struct {
 	Events []StatusEvent `xml:"status-event"`
+}
+
+type ExternalVault struct {
+	PreviousNetworkTransactionID string `xml:"previous-network-transaction-id,omitempty"`
+	Status                       string `xml:"status,omitempty"`
 }
 
 type StatusEvent struct {
