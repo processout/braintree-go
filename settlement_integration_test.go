@@ -13,6 +13,7 @@ const (
 	cardToUse = "Discover"
 )
 
+// FIXME: flaky test - fails every once in a while when run with other tests, succeeds every time when run separately
 func TestSettlementBatch(t *testing.T) {
 	// Get current batch summary
 	y, m, d := time.Now().Date()
