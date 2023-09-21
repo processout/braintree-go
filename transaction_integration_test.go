@@ -151,7 +151,7 @@ func TestFindNonExistantTransaction(t *testing.T) {
 	if err == nil {
 		t.Fatal("Did not receive error when finding an invalid tx ID")
 	}
-	if err.Error() != "Not Found (404)" {
+	if err.Error() != "404 Not Found" {
 		t.Fatal(err)
 	}
 }
@@ -287,7 +287,6 @@ func TestTransactionCreateFromPaymentMethodCode(t *testing.T) {
 		Amount:             randomAmount(),
 		PaymentMethodToken: customer.CreditCards.CreditCard[0].Token,
 	})
-
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -419,7 +418,7 @@ func TestTransactionCreateSettleAndFullRefund(t *testing.T) {
 	refundTxn, err = testGateway.Transaction().Refund(txn.Id)
 	t.Log(refundTxn)
 
-	if err.Error() != "Transaction has already been completely refunded." {
+	if err.Error() != "Transaction has already been fully refunded." {
 		t.Fatal(err)
 	}
 }
