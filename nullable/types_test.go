@@ -22,16 +22,16 @@ func TestNullInt64UnmarshalText(t *testing.T) {
 
 		if tt.shouldError {
 			if err == nil {
-				t.Errorf("expected UnmarshalText(%q) => to error, but it did not", tt.in)
+				t.Errorf("expected UnmarshalText(%v) => to error, but it did not", tt.in)
 			}
 		} else {
 			if err != nil {
-				t.Errorf("expected UnmarshalText(%q) => to not error, but it did with %s", tt.in, err)
+				t.Errorf("expected UnmarshalText(%v) => to not error, but it did with %v", tt.in, err)
 			}
 		}
 
 		if n != tt.out {
-			t.Errorf("UnmarshalText(%q) => %q, want %q", tt.in, n, tt.out)
+			t.Errorf("UnmarshalText(%v) => %v, want %v", tt.in, n, tt.out)
 		}
 	}
 }
@@ -49,7 +49,7 @@ func TestNullInt64MarshalText(t *testing.T) {
 		b, err := tt.in.MarshalText()
 
 		if !bytes.Equal(b, tt.out) || err != nil {
-			t.Errorf("%q.MarshalText() => (%s, %s), want (%s, %s)", tt.in, b, err, tt.out, nil)
+			t.Errorf("%v.MarshalText() => (%s, %s), want (%s, %v)", tt.in, b, err, tt.out, nil)
 		}
 	}
 }
@@ -71,16 +71,16 @@ func TestNullBoolUnmarshalText(t *testing.T) {
 
 		if tt.shouldError {
 			if err == nil {
-				t.Errorf("expected UnmarshalText(%q) => to error, but it did not", tt.in)
+				t.Errorf("expected UnmarshalText(%v) => to error, but it did not", tt.in)
 			}
 		} else {
 			if err != nil {
-				t.Errorf("expected UnmarshalText(%q) => to not error, but it did with %s", tt.in, err)
+				t.Errorf("expected UnmarshalText(%v) => to not error, but it did with %s", tt.in, err)
 			}
 		}
 
 		if n != tt.out {
-			t.Errorf("UnmarshalText(%q) => %q, want %q", tt.in, n, tt.out)
+			t.Errorf("UnmarshalText(%v) => %v, want %v", tt.in, n, tt.out)
 		}
 	}
 }
@@ -98,7 +98,7 @@ func TestNullBoolMarshalText(t *testing.T) {
 		b, err := tt.in.MarshalText()
 
 		if !bytes.Equal(b, tt.out) || err != nil {
-			t.Errorf("%q.MarshalText() => (%s, %s), want (%s, %s)", tt.in, b, err, tt.out, nil)
+			t.Errorf("%v.MarshalText() => (%s, %s), want (%s, %v)", tt.in, b, err, tt.out, nil)
 		}
 	}
 }
