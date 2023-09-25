@@ -62,6 +62,64 @@ func TestTransactionCreateSubmitForSettlementAndVoid(t *testing.T) {
 	}
 }
 
+func TestExternal3DSTransactionCreateSubmitForSettlementAndVoid(t *testing.T) {
+	tx, err := testGateway.Transaction().Create(&Transaction{
+		Type:   "sale",
+		Amount: NewDecimal(2000, 2),
+		CreditCard: &CreditCard{
+			Number:         testCreditCards["visa"].Number,
+			ExpirationDate: "05/14",
+		},
+		ThreeDSecurePassThru: &ThreeDSecurePassThrough{
+			CAVV:                "200",
+			DSTransactionID:     "",
+			ECIFlag:             "02",
+			ThreeDSecureVersion: "1.0.2",
+			XID:                 "123",
+		},
+	})
+
+	t.Log(tx)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+	if tx.Id == "" {
+		t.Fatal("Received invalid ID on new transaction")
+	}
+	if tx.Status != "authorized" {
+		t.Fatal(tx.Status)
+	}
+
+	// Submit for settlement
+	ten := NewDecimal(1000, 2)
+	tx2, err := testGateway.Transaction().SubmitForSettlement(tx.Id, ten)
+
+	t.Log(tx2)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+	if x := tx2.Status; x != "submitted_for_settlement" {
+		t.Fatal(x)
+	}
+	if amount := tx2.Amount; amount.Cmp(ten) != 0 {
+		t.Fatalf("transaction settlement amount (%s) did not equal amount requested (%s)", amount, ten)
+	}
+
+	// Void
+	tx3, err := testGateway.Transaction().Void(tx2.Id)
+
+	t.Log(tx3)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+	if x := tx3.Status; x != "voided" {
+		t.Fatal(x)
+	}
+}
+
 func TestTransactionSearch(t *testing.T) {
 	txg := testGateway.Transaction()
 	createTx := func(amount *Decimal, customerName string) error {

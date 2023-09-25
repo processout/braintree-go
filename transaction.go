@@ -14,22 +14,23 @@ type Transaction struct {
 	Status        string         `xml:"status,omitempty"`
 	StatusHistory *StatusHistory `xml:"status-history,omitempty"`
 
-	Type               string              `xml:"type,omitempty"`
-	Amount             *Decimal            `xml:"amount"`
-	CurrencyISOCode    string              `xml:"currency-iso-code,omitempty"`
-	Tax                *Decimal            `xml:"tax-amount"`
-	OrderId            string              `xml:"order-id,omitempty"`
-	PaymentMethodToken string              `xml:"payment-method-token,omitempty"`
-	PaymentMethodNonce string              `xml:"payment-method-nonce,omitempty"`
-	MerchantAccountId  string              `xml:"merchant-account-id,omitempty"`
-	PlanId             string              `xml:"plan-id,omitempty"`
-	CreditCard         *CreditCard         `xml:"credit-card,omitempty"`
-	Customer           *Customer           `xml:"customer,omitempty"`
-	BillingAddress     *Address            `xml:"billing,omitempty"`
-	ShippingAddress    *Address            `xml:"shipping,omitempty"`
-	Options            *TransactionOptions `xml:"options,omitempty"`
-	ExternalVault      *ExternalVault      `xml:"external-vault,omitempty"`
-	FeeAmount          *Decimal            `xml:"transaction-fee-amount"`
+	Type                 string                   `xml:"type,omitempty"`
+	Amount               *Decimal                 `xml:"amount"`
+	CurrencyISOCode      string                   `xml:"currency-iso-code,omitempty"`
+	Tax                  *Decimal                 `xml:"tax-amount"`
+	OrderId              string                   `xml:"order-id,omitempty"`
+	PaymentMethodToken   string                   `xml:"payment-method-token,omitempty"`
+	PaymentMethodNonce   string                   `xml:"payment-method-nonce,omitempty"`
+	MerchantAccountId    string                   `xml:"merchant-account-id,omitempty"`
+	PlanId               string                   `xml:"plan-id,omitempty"`
+	CreditCard           *CreditCard              `xml:"credit-card,omitempty"`
+	Customer             *Customer                `xml:"customer,omitempty"`
+	BillingAddress       *Address                 `xml:"billing,omitempty"`
+	ShippingAddress      *Address                 `xml:"shipping,omitempty"`
+	Options              *TransactionOptions      `xml:"options,omitempty"`
+	ThreeDSecurePassThru *ThreeDSecurePassThrough `xml:"three-d-secure-pass-thru,omitempty"`
+	ExternalVault        *ExternalVault           `xml:"external-vault,omitempty"`
+	FeeAmount            *Decimal                 `xml:"transaction-fee-amount"`
 
 	ServiceFeeAmount      *Decimal `xml:"service-fee-amount,omitempty"`
 	ServiceFeeTransaction string   `xml:"transaction-fee-currency-iso-code,omitempty"`
@@ -154,6 +155,14 @@ type TransactionOptions struct {
 	AddBillingAddressToPaymentMethod bool `xml:"add-billing-address-to-payment-method,omitempty"`
 	StoreShippingAddressInVault      bool `xml:"store-shipping-address-in-vault,omitempty"`
 	SkipCVV                          bool `xml:"skip-cvv,omitempty"`
+}
+
+type ThreeDSecurePassThrough struct {
+	CAVV                string `xml:"cavv"`
+	DSTransactionID     string `xml:"ds-transaction-id"`
+	ECIFlag             string `xml:"eci-flag"`
+	ThreeDSecureVersion string `xml:"three-d-secure-version"`
+	XID                 string `xml:"xid"`
 }
 
 type TransactionSearchResult struct {
