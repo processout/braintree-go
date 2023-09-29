@@ -129,7 +129,7 @@ func TestTransactionCreateSubmitForSettlementAndVoidWithNetworkToken(t *testing.
 		CreditCard: &CreditCard{
 			Number:         testCreditCards["visa"].Number,
 			ExpirationDate: "05/14",
-			NetworkTokenAttrbiutes: &NetworkTokenizationAttributes{
+			NetworkTokenAttributes: &NetworkTokenizationAttributes{
 				Cryptogram:         "473dcfbc-06b8-431b-9885-ad1e904f8b1b",
 				EcommerceIndicator: "5a4dacb5-03a4-4c8d-bf23-c11a5433c036",
 				TokenRequestorID:   testGateway.MerchantId,

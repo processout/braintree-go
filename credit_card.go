@@ -11,7 +11,7 @@ type CreditCard struct {
 	ExpirationMonth           string                         `xml:"expiration-month,omitempty"`
 	ExpirationYear            string                         `xml:"expiration-year,omitempty"`
 	CVV                       string                         `xml:"cvv,omitempty"`
-	NetworkTokenAttrbiutes    *NetworkTokenizationAttributes `xml:"network-tokenization-attributes,omitempty"`
+	NetworkTokenAttributes    *NetworkTokenizationAttributes `xml:"network-tokenization-attributes,omitempty"`
 	VenmoSDKPaymentMethodCode string                         `xml:"venmo-sdk-payment-method-code,omitempty"`
 	VenmoSDK                  bool                           `xml:"venmo-sdk,omitempty"`
 	Options                   *CreditCardOptions             `xml:"options,omitempty"`
