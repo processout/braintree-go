@@ -61,6 +61,7 @@ type Transaction struct {
 	PaymentInstrumentType string      `xml:"payment-instrument-type,omitempty"`
 	TransactionSource     string      `xml:"transaction-source,omitempty"`
 	Recurring             bool        `xml:"recurring,omitempty"`
+	ARN                   string      `xml:"acquirer-reference-number,omitempty" json:"acquirer_reference_number,omitempty"`
 }
 
 type Refund struct {
