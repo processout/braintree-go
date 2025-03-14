@@ -56,12 +56,13 @@ type Transaction struct {
 	SettlementBatchId          string  `xml:"settlement-batch-id,omitempty"`
 	NetworkTransactionID       string  `xml:"network-transaction-id,omitempty"`
 
-	SubscriptionID        string      `xml:"subscription-id,omitempty"`
-	Descriptor            *Descriptor `xml:"descriptor,omitempty"`
-	PaymentInstrumentType string      `xml:"payment-instrument-type,omitempty"`
-	TransactionSource     string      `xml:"transaction-source,omitempty"`
-	Recurring             bool        `xml:"recurring,omitempty"`
-	ARN                   string      `xml:"acquirer-reference-number,omitempty" json:"acquirer_reference_number,omitempty"`
+	SubscriptionID        string        `xml:"subscription-id,omitempty"`
+	Descriptor            *Descriptor   `xml:"descriptor,omitempty"`
+	PaymentInstrumentType string        `xml:"payment-instrument-type,omitempty"`
+	TransactionSource     string        `xml:"transaction-source,omitempty"`
+	Recurring             bool          `xml:"recurring,omitempty"`
+	ARN                   string        `xml:"acquirer-reference-number,omitempty" json:"acquirer_reference_number,omitempty"`
+	ApplePayCard          *ApplePayCard `xml:"apple_pay_card,omitempty"`
 }
 
 type Refund struct {
@@ -174,4 +175,13 @@ type TransactionSearchResult struct {
 
 type IDs struct {
 	Type string `xml:"type,attr"`
+}
+
+type ApplePayCard struct {
+	Number          string `xml:"number,omitempty"`
+	CardHolderName  string `xml:"cardholder_name,omitempty"`
+	Cryptogram      string `xml:"cryptogram,omitempty"`
+	ExpirationMonth string `xml:"expiration_month,omitempty"`
+	ExpirationYear  string `xml:"expiration_year,omitempty"`
+	EciIndicator    string `xml:"eci_indicator,omitempty"`
 }
