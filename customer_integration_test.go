@@ -117,3 +117,27 @@ func TestCustomer(t *testing.T) {
 		t.Fatal(c4)
 	}
 }
+
+func TestCustomerWithCardVerification(t *testing.T) {
+	cust, err := testGateway.Customer().Create(&Customer{
+		FirstName: "John",
+		LastName:  "Doe",
+		Email:     "john.doe@example.com",
+		Phone:     "1234567890",
+		CreditCard: &CreditCard{
+			Number:         testCreditCards["visa"].Number,
+			ExpirationDate: "05/30",
+			CVV:            "200",
+			Options: &CreditCardOptions{
+				VerifyCard: true,
+			},
+		},
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if cust.CreditCards.CreditCard[0].Verifications.CreditCardVerification[0].Status != "verified" {
+		t.Fatal("card not verified")
+	}
+}
