@@ -36,10 +36,48 @@ type CreditCard struct {
 	UniqueNumberIdentifier    string                         `xml:"unique-number-identifier,omitempty"`
 	BillingAddress            *Address                       `xml:"billing-address,omitempty"`
 	Subscriptions             *Subscriptions                 `xml:"subscriptions,omitempty"`
+	Verifications             *CreditCardVerifications       `xml:"verifications,omitempty"`
 }
 
 type CreditCards struct {
 	CreditCard []*CreditCard `xml:"credit-card"`
+}
+
+type CreditCardVerification struct {
+	Id                           string      `xml:"id,omitempty"`
+	Status                       string      `xml:"status,omitempty"`
+	Amount                       string      `xml:"amount,omitempty"`
+	CurrencyIsoCode              string      `xml:"currency-iso-code,omitempty"`
+	MerchantAccountId            string      `xml:"merchant-account-id,omitempty"`
+	ProcessorResponseCode        string      `xml:"processor-response-code,omitempty"`
+	ProcessorResponseText        string      `xml:"processor-response-text,omitempty"`
+	ProcessorResponseType        string      `xml:"processor-response-type,omitempty"`
+	NetworkResponseCode          string      `xml:"network-response-code,omitempty"`
+	NetworkResponseText          string      `xml:"network-response-text,omitempty"`
+	AdditionalProcessorResponse  string      `xml:"additional-processor-response,omitempty"`
+	GatewayRejectionReason       string      `xml:"gateway-rejection-reason,omitempty"`
+	CvvResponseCode              string      `xml:"cvv-response-code,omitempty"`
+	AvsErrorResponseCode         string      `xml:"avs-error-response-code,omitempty"`
+	AvsPostalCodeResponseCode    string      `xml:"avs-postal-code-response-code,omitempty"`
+	AvsStreetAddressResponseCode string      `xml:"avs-street-address-response-code,omitempty"`
+	GraphQLId                    string      `xml:"graphql-id,omitempty"`
+	CreatedAt                    *time.Time  `xml:"created-at,omitempty"`
+	CreditCard                   *CreditCard `xml:"credit-card,omitempty"`
+	Billing                      *Address    `xml:"billing,omitempty"`
+	RiskData                     *RiskData   `xml:"risk-data,omitempty"`
+}
+
+type CreditCardVerifications struct {
+	CreditCardVerification []*CreditCardVerification `xml:"verification"`
+}
+
+type RiskData struct {
+	Id                   string   `xml:"id,omitempty"`
+	Decision             string   `xml:"decision,omitempty"`
+	DecisionReasons      []string `xml:"decision-reasons,omitempty"`
+	DeviceDataCaptured   bool     `xml:"device-data-captured,omitempty"`
+	FraudServiceProvider string   `xml:"fraud-service-provider,omitempty"`
+	TransactionRiskScore string   `xml:"transaction-risk-score,omitempty"`
 }
 
 type CreditCardOptions struct {
@@ -65,6 +103,21 @@ func (card *CreditCard) AllSubscriptions() []*Subscription {
 			a := make([]*Subscription, 0, len(subs))
 			for _, s := range subs {
 				a = append(a, s)
+			}
+			return a
+		}
+	}
+	return nil
+}
+
+// AllVerifications returns all verifications for this card, or nil if none present.
+func (card *CreditCard) AllVerifications() []*CreditCardVerification {
+	if card.Verifications != nil {
+		verifs := card.Verifications.CreditCardVerification
+		if len(verifs) > 0 {
+			a := make([]*CreditCardVerification, 0, len(verifs))
+			for _, v := range verifs {
+				a = append(a, v)
 			}
 			return a
 		}
