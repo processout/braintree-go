@@ -1,4 +1,5 @@
-/* API errors are intended to be consumed in two ways. One, they can be dealt with as a single unit:
+/*
+	API errors are intended to be consumed in two ways. One, they can be dealt with as a single unit:
 
 result, err := gateway.Create(transaction)
 err.Error() => "A top level error message"
@@ -18,11 +19,12 @@ type errorGroup interface {
 
 type BraintreeError struct {
 	statusCode      int
-	XMLName         string           `xml:"api-error-response"`
-	Errors          responseErrors   `xml:"errors"`
-	ErrorMessage    string           `xml:"message"`
-	MerchantAccount *MerchantAccount `xml:",omitempty"`
-	Transaction     Transaction      `xml:"transaction"`
+	XMLName         string                 `xml:"api-error-response"`
+	Errors          responseErrors         `xml:"errors"`
+	ErrorMessage    string                 `xml:"message"`
+	MerchantAccount *MerchantAccount       `xml:",omitempty"`
+	Transaction     Transaction            `xml:"transaction"`
+	Verification    CreditCardVerification `xml:"verification"`
 }
 
 func (e *BraintreeError) Error() string {
