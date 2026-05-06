@@ -54,6 +54,7 @@ type CreditCardVerification struct {
 	ProcessorResponseType        string      `xml:"processor-response-type,omitempty"`
 	NetworkResponseCode          string      `xml:"network-response-code,omitempty"`
 	NetworkResponseText          string      `xml:"network-response-text,omitempty"`
+	NetworkTransactionID         string      `xml:"network-transaction-id,omitempty"`
 	AdditionalProcessorResponse  string      `xml:"additional-processor-response,omitempty"`
 	GatewayRejectionReason       string      `xml:"gateway-rejection-reason,omitempty"`
 	CvvResponseCode              string      `xml:"cvv-response-code,omitempty"`
