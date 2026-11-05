@@ -92,3 +92,42 @@ func TestCreditCardVerificationUnmarshalsTLID(t *testing.T) {
 		t.Errorf("unexpected mastercard transaction link id %q", v.MastercardTransactionLinkID)
 	}
 }
+
+func TestTransactionUnmarshalsMerchantAdviceCode(t *testing.T) {
+	payload := `<transaction>
+		<processor-response-code>2043</processor-response-code>
+		<merchant-advice-code>03</merchant-advice-code>
+		<merchant-advice-code-text>Do Not Try Again</merchant-advice-code-text>
+	</transaction>`
+
+	var tx Transaction
+	if err := xml.Unmarshal([]byte(payload), &tx); err != nil {
+		t.Fatal(err)
+	}
+
+	if tx.MerchantAdviceCode != "03" {
+		t.Fatalf("expected merchant advice code 03, got %q", tx.MerchantAdviceCode)
+	}
+	if tx.MerchantAdviceCodeText != "Do Not Try Again" {
+		t.Fatalf("expected merchant advice code text, got %q", tx.MerchantAdviceCodeText)
+	}
+}
+
+func TestBraintreeErrorUnmarshalsMerchantAdviceCode(t *testing.T) {
+	payload := `<api-error-response>
+		<message>Error - Do Not Retry, Call Issuer</message>
+		<transaction>
+			<processor-response-code>2043</processor-response-code>
+			<merchant-advice-code>03</merchant-advice-code>
+		</transaction>
+	</api-error-response>`
+
+	var btErr BraintreeError
+	if err := xml.Unmarshal([]byte(payload), &btErr); err != nil {
+		t.Fatal(err)
+	}
+
+	if btErr.Transaction.MerchantAdviceCode != "03" {
+		t.Fatalf("expected merchant advice code 03, got %q", btErr.Transaction.MerchantAdviceCode)
+	}
+}

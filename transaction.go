@@ -58,6 +58,9 @@ type Transaction struct {
 	NetworkTransactionID       string  `xml:"network-transaction-id,omitempty"`
 	// MastercardTransactionLinkID is the Mastercard Transaction Link ID (TLID), only returned for Mastercard
 	MastercardTransactionLinkID string `xml:"mastercard-transaction-link-id,omitempty"`
+	// MerchantAdviceCode is the Mastercard Merchant Advice Code (MAC), only returned on Mastercard declines
+	MerchantAdviceCode     string `xml:"merchant-advice-code,omitempty"`
+	MerchantAdviceCodeText string `xml:"merchant-advice-code-text,omitempty"`
 
 	SubscriptionID        string        `xml:"subscription-id,omitempty"`
 	Descriptor            *Descriptor   `xml:"descriptor,omitempty"`
