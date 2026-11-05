@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api-error-response>
+  <errors>
+    <errors type="array"></errors>
+  </errors>
+  <params>
+    <transaction>
+      <type>sale</type>
+      <amount>1.00</amount>
+      <channel>Test_Channel</channel>
+      <order-id>order_0000000002</order-id>
+      <merchant-account-id>*REDACTED*</merchant-account-id>
+      <credit-card>
+        <expiration-month>*REDACTED*</expiration-month>
+        <expiration-year>*REDACTED*</expiration-year>
+        <cardholder-name>*REDACTED*</cardholder-name>
+      </credit-card>
+      <billing>
+        <first-name>John</first-name>
+        <last-name>Roe</last-name>
+        <street-address>3 Sample Avenue</street-address>
+        <locality>Sampletown</locality>
+        <region>CA</region>
+        <postal-code>90001</postal-code>
+        <country-code-alpha2>US</country-code-alpha2>
+      </billing>
+      <external-vault>
+        <status>will_vault</status>
+      </external-vault>
+      <descriptor>
+        <name>Tes*TESTPRODUCT</name>
+        <phone nil="true"></phone>
+        <url nil="true"></url>
+      </descriptor>
+    </transaction>
+  </params>
+  <message>Gateway Rejected: cvv</message>
+  <transaction>
+    <id>xyz98765</id>
+    <status>gateway_rejected</status>
+    <type>sale</type>
+    <currency-iso-code>USD</currency-iso-code>
+    <amount>1.00</amount>
+    <amount-requested>1.00</amount-requested>
+    <merchant-account-id>*REDACTED*</merchant-account-id>
+    <sub-merchant-account-id nil="true"></sub-merchant-account-id>
+    <master-merchant-account-id nil="true"></master-merchant-account-id>
+    <order-id>order_0000000002</order-id>
+    <created-at type="datetime">2026-01-01T11:00:00Z</created-at>
+    <updated-at type="datetime">2026-01-01T11:00:04Z</updated-at>
+    <customer>
+      <id nil="true"></id>
+      <first-name nil="true"></first-name>
+      <last-name nil="true"></last-name>
+      <company nil="true"></company>
+      <email nil="true"></email>
+      <website nil="true"></website>
+      <phone nil="true"></phone>
+      <international-phone>
+        <country-code nil="true"></country-code>
+        <national-number nil="true"></national-number>
+      </international-phone>
+      <fax nil="true"></fax>
+    </customer>
+    <billing>
+      <id nil="true"></id>
+      <first-name>John</first-name>
+      <last-name>Roe</last-name>
+      <company nil="true"></company>
+      <street-address>3 Sample Avenue</street-address>
+      <extended-address nil="true"></extended-address>
+      <locality>Sampletown</locality>
+      <region>CA</region>
+      <postal-code>90001</postal-code>
+      <country-name>United States of America</country-name>
+      <country-code-alpha2>US</country-code-alpha2>
+      <country-code-alpha3>USA</country-code-alpha3>
+      <country-code-numeric>840</country-code-numeric>
+      <phone-number nil="true"></phone-number>
+      <international-phone>
+        <country-code nil="true"></country-code>
+        <national-number nil="true"></national-number>
+      </international-phone>
+    </billing>
+    <refund-id nil="true"></refund-id>
+    <refund-ids type="array"></refund-ids>
+    <refunded-transaction-id nil="true"></refunded-transaction-id>
+    <partial-settlement-transaction-ids type="array"></partial-settlement-transaction-ids>
+    <authorized-transaction-id nil="true"></authorized-transaction-id>
+    <settlement-batch-id nil="true"></settlement-batch-id>
+    <shipping>
+      <id nil="true"></id>
+      <first-name nil="true"></first-name>
+      <last-name nil="true"></last-name>
+      <company nil="true"></company>
+      <street-address nil="true"></street-address>
+      <extended-address nil="true"></extended-address>
+      <locality nil="true"></locality>
+      <region nil="true"></region>
+      <postal-code nil="true"></postal-code>
+      <country-name nil="true"></country-name>
+      <country-code-alpha2 nil="true"></country-code-alpha2>
+      <country-code-alpha3 nil="true"></country-code-alpha3>
+      <country-code-numeric nil="true"></country-code-numeric>
+      <phone-number nil="true"></phone-number>
+      <international-phone>
+        <country-code nil="true"></country-code>
+        <national-number nil="true"></national-number>
+      </international-phone>
+      <shipping-method nil="true"></shipping-method>
+    </shipping>
+    <custom-fields></custom-fields>
+    <ani-first-name-response-code>U</ani-first-name-response-code>
+    <ani-last-name-response-code>U</ani-last-name-response-code>
+    <account-funding-transaction type="boolean">false</account-funding-transaction>
+    <avs-error-response-code nil="true"></avs-error-response-code>
+    <avs-postal-code-response-code>M</avs-postal-code-response-code>
+    <avs-street-address-response-code>M</avs-street-address-response-code>
+    <cvv-response-code>N</cvv-response-code>
+    <gateway-rejection-reason>cvv</gateway-rejection-reason>
+    <processor-authorization-code>TEST01</processor-authorization-code>
+    <processor-response-code>1000</processor-response-code>
+    <processor-response-text>Approved</processor-response-text>
+    <additional-processor-response nil="true"></additional-processor-response>
+    <voice-referral-number nil="true"></voice-referral-number>
+    <purchase-order-number nil="true"></purchase-order-number>
+    <tax-amount nil="true"></tax-amount>
+    <tax-exempt type="boolean">false</tax-exempt>
+    <sca-exemption-requested nil="true"></sca-exemption-requested>
+    <processed-with-network-token type="boolean">false</processed-with-network-token>
+    <credit-card>
+      <token nil="true"></token>
+      <bin>411111</bin>
+      <last-4>1111</last-4>
+      <card-type>Visa</card-type>
+      <expiration-month>*REDACTED*</expiration-month>
+      <expiration-year>*REDACTED*</expiration-year>
+      <customer-location>US</customer-location>
+      <cardholder-name>*REDACTED*</cardholder-name>
+      <image-url>https://assets.braintreegateway.com/payment_method_logo/visa.png?environment=production</image-url>
+      <is-network-tokenized type="boolean">false</is-network-tokenized>
+      <prepaid>No</prepaid>
+      <prepaid-reloadable>No</prepaid-reloadable>
+      <healthcare>No</healthcare>
+      <debit>No</debit>
+      <durbin-regulated>No</durbin-regulated>
+      <commercial>No</commercial>
+      <payroll>No</payroll>
+      <business>Unknown</business>
+      <consumer>Yes</consumer>
+      <corporate>Unknown</corporate>
+      <purchase>Unknown</purchase>
+      <issuing-bank>TEST BANK</issuing-bank>
+      <country-of-issuance>USA</country-of-issuance>
+      <product-id>A</product-id>
+      <global-id nil="true"></global-id>
+      <account-type>credit</account-type>
+      <unique-number-identifier>00000000000000000000000000000002</unique-number-identifier>
+      <venmo-sdk type="boolean">false</venmo-sdk>
+      <payment-account-reference nil="true"></payment-account-reference>
+      <account-balance nil="true"></account-balance>
+    </credit-card>
+    <status-history type="array">
+      <status-event>
+        <timestamp type="datetime">2026-01-01T11:00:01Z</timestamp>
+        <status>gateway_rejected</status>
+        <amount>1.00</amount>
+        <user>api-user@example.com</user>
+        <transaction-source>api</transaction-source>
+      </status-event>
+    </status-history>
+    <plan-id nil="true"></plan-id>
+    <subscription-id nil="true"></subscription-id>
+    <subscription>
+      <billing-period-end-date nil="true"></billing-period-end-date>
+      <billing-period-start-date nil="true"></billing-period-start-date>
+    </subscription>
+    <add-ons type="array"></add-ons>
+    <discounts type="array"></discounts>
+    <descriptor>
+      <name>Tes*TESTPRODUCT</name>
+      <phone nil="true"></phone>
+      <url nil="true"></url>
+    </descriptor>
+    <recurring type="boolean">false</recurring>
+    <channel>Test_Channel</channel>
+    <service-fee-amount nil="true"></service-fee-amount>
+    <escrow-status nil="true"></escrow-status>
+    <disbursement-details>
+      <disbursement-date nil="true"></disbursement-date>
+      <settlement-amount nil="true"></settlement-amount>
+      <settlement-currency-iso-code nil="true"></settlement-currency-iso-code>
+      <settlement-currency-exchange-rate nil="true"></settlement-currency-exchange-rate>
+      <settlement-base-currency-exchange-rate nil="true"></settlement-base-currency-exchange-rate>
+      <funds-held nil="true"></funds-held>
+      <success nil="true"></success>
+    </disbursement-details>
+    <disputes type="array"></disputes>
+    <authorization-adjustments type="array"></authorization-adjustments>
+    <payment-instrument-type>credit_card</payment-instrument-type>
+    <processor-settlement-response-code></processor-settlement-response-code>
+    <processor-settlement-response-text></processor-settlement-response-text>
+    <network-response-code>00</network-response-code>
+    <network-response-text>Successful approval/completion or V.I.P. PIN verification is successful</network-response-text>
+    <merchant-advice-code nil="true"></merchant-advice-code>
+    <merchant-advice-code-text nil="true"></merchant-advice-code-text>
+    <risk-data>
+      <id>xyz98765</id>
+      <decision>Approve</decision>
+      <fraud-service-provider>fraud_protection</fraud-service-provider>
+      <device-data-captured type="boolean">false</device-data-captured>
+      <liability-shift nil="true"></liability-shift>
+      <decision-reasons type="array"></decision-reasons>
+      <reason-details type="array"></reason-details>
+    </risk-data>
+    <three-d-secure-info nil="true"></three-d-secure-info>
+    <ships-from-postal-code nil="true"></ships-from-postal-code>
+    <shipping-amount nil="true"></shipping-amount>
+    <shipping-tax-amount nil="true"></shipping-tax-amount>
+    <discount-amount nil="true"></discount-amount>
+    <surcharge-amount nil="true"></surcharge-amount>
+    <network-transaction-id>000000000000002</network-transaction-id>
+    <mastercard-transaction-link-id nil="true"></mastercard-transaction-link-id>
+    <processor-response-type>approved</processor-response-type>
+    <authorization-expires-at nil="true"></authorization-expires-at>
+    <retry-ids type="array"></retry-ids>
+    <retried-transaction-id nil="true"></retried-transaction-id>
+    <retried type="boolean">false</retried>
+    <refund-global-ids type="array"></refund-global-ids>
+    <partial-settlement-transaction-global-ids type="array"></partial-settlement-transaction-global-ids>
+    <refunded-transaction-global-id nil="true"></refunded-transaction-global-id>
+    <authorized-transaction-global-id nil="true"></authorized-transaction-global-id>
+    <global-id>dHJhbnNhY3Rpb25feHl6OTg3NjU</global-id>
+    <retry-global-ids type="array"></retry-global-ids>
+    <retried-transaction-global-id nil="true"></retried-transaction-global-id>
+    <retrieval-reference-number nil="true"></retrieval-reference-number>
+    <ach-return-code nil="true"></ach-return-code>
+    <ach-reject-reason nil="true"></ach-reject-reason>
+    <installment-count nil="true"></installment-count>
+    <installments type="array"></installments>
+    <refunded-installments type="array"></refunded-installments>
+    <response-emv-data nil="true"></response-emv-data>
+    <acquirer-reference-number nil="true"></acquirer-reference-number>
+    <merchant-identification-number>*REDACTED*</merchant-identification-number>
+    <terminal-identification-number>00000001</terminal-identification-number>
+    <merchant-name>Test Merchant</merchant-name>
+    <merchant-address>
+      <street-address nil="true"></street-address>
+      <locality>Merchantville</locality>
+      <region>IL</region>
+      <postal-code>10002</postal-code>
+      <phone>10000000000</phone>
+    </merchant-address>
+    <pin-verified type="boolean">false</pin-verified>
+    <debit-network nil="true"></debit-network>
+    <processing-mode nil="true"></processing-mode>
+    <payment-receipt>
+      <id>xyz98765</id>
+      <global-id>dHJhbnNhY3Rpb25feHl6OTg3NjU</global-id>
+      <amount>1.00</amount>
+      <currency-iso-code>USD</currency-iso-code>
+      <processor-response-code>1000</processor-response-code>
+      <processor-response-text>Approved</processor-response-text>
+      <processor-authorization-code>TEST01</processor-authorization-code>
+      <merchant-name>Test Merchant</merchant-name>
+      <merchant-address>
+        <street-address nil="true"></street-address>
+        <locality>Merchantville</locality>
+        <region>IL</region>
+        <postal-code>10002</postal-code>
+        <phone>10000000000</phone>
+      </merchant-address>
+      <merchant-identification-number>*REDACTED*</merchant-identification-number>
+      <terminal-identification-number>00000001</terminal-identification-number>
+      <type>sale</type>
+      <pin-verified type="boolean">false</pin-verified>
+      <processing-mode nil="true"></processing-mode>
+      <network-identification-code nil="true"></network-identification-code>
+      <card-type>Visa</card-type>
+      <card-last-4>1111</card-last-4>
+      <account-balance nil="true"></account-balance>
+    </payment-receipt>
+  </transaction>
+</api-error-response>
