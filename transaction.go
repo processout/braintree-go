@@ -65,6 +65,14 @@ type Transaction struct {
 	GatewayRejectionReason          string `xml:"gateway-rejection-reason,omitempty"`
 	ProcessorSettlementResponseCode string `xml:"processor-settlement-response-code,omitempty"`
 	ProcessorSettlementResponseText string `xml:"processor-settlement-response-text,omitempty"`
+	ProcessorResponseType           string `xml:"processor-response-type,omitempty"`
+	AdditionalProcessorResponse     string `xml:"additional-processor-response,omitempty"`
+	NetworkResponseCode             string `xml:"network-response-code,omitempty"`
+	NetworkResponseText             string `xml:"network-response-text,omitempty"`
+	// NetworkToken holds the network token details when the transaction was processed with one
+	NetworkToken              *CreditCard        `xml:"network-token,omitempty"`
+	ProcessedWithNetworkToken *nullable.NullBool `xml:"processed-with-network-token,omitempty"`
+	ThreeDSecureInfo          *ThreeDSecureInfo  `xml:"three-d-secure-info,omitempty"`
 
 	SubscriptionID        string        `xml:"subscription-id,omitempty"`
 	Descriptor            *Descriptor   `xml:"descriptor,omitempty"`
@@ -203,4 +211,21 @@ type ApplePayCard struct {
 	ExpirationMonth string `xml:"expiration_month,omitempty"`
 	ExpirationYear  string `xml:"expiration_year,omitempty"`
 	EciIndicator    string `xml:"eci_indicator,omitempty"`
+}
+
+// ThreeDSecureInfo is the 3D Secure result Braintree applied to the transaction
+type ThreeDSecureInfo struct {
+	LiabilityShifted                *nullable.NullBool `xml:"liability-shifted,omitempty"`
+	LiabilityShiftPossible          *nullable.NullBool `xml:"liability-shift-possible,omitempty"`
+	Enrolled                        string             `xml:"enrolled,omitempty"`
+	Status                          string             `xml:"status,omitempty"`
+	CAVV                            string             `xml:"cavv,omitempty"`
+	ECIFlag                         string             `xml:"eci-flag,omitempty"`
+	XID                             string             `xml:"xid,omitempty"`
+	ThreeDSecureVersion             string             `xml:"three-d-secure-version,omitempty"`
+	DSTransactionID                 string             `xml:"ds-transaction-id,omitempty"`
+	ThreeDSecureAuthenticationID    string             `xml:"three-d-secure-authentication-id,omitempty"`
+	ACSTransactionID                string             `xml:"acs-transaction-id,omitempty"`
+	PAResStatus                     string             `xml:"pares-status,omitempty"`
+	ThreeDSecureServerTransactionID string             `xml:"three-d-secure-server-transaction-id,omitempty"`
 }

@@ -1,6 +1,10 @@
 package braintree
 
-import "time"
+import (
+	"time"
+
+	"github.com/processout/braintree-go/nullable"
+)
 
 type CreditCard struct {
 	CustomerId                string                         `xml:"customer-id,omitempty"`
@@ -37,6 +41,9 @@ type CreditCard struct {
 	BillingAddress            *Address                       `xml:"billing-address,omitempty"`
 	Subscriptions             *Subscriptions                 `xml:"subscriptions,omitempty"`
 	Verifications             *CreditCardVerifications       `xml:"verifications,omitempty"`
+	// Response only
+	IsNetworkTokenized      *nullable.NullBool `xml:"is-network-tokenized,omitempty"`
+	PaymentAccountReference string             `xml:"payment-account-reference,omitempty"`
 }
 
 type CreditCards struct {

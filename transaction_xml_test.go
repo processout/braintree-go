@@ -155,3 +155,72 @@ func TestTransactionUnmarshalsGatewayRejectionAndSettlementResponse(t *testing.T
 		t.Fatalf("expected settlement response text, got %q", tx.ProcessorSettlementResponseText)
 	}
 }
+
+func TestTransactionUnmarshalsNetworkTokenAndNetworkResponse(t *testing.T) {
+	payload := `<transaction>
+		<processor-response-type>hard_declined</processor-response-type>
+		<additional-processor-response>05 : NOT AUTHORISED</additional-processor-response>
+		<network-response-code>05</network-response-code>
+		<network-response-text>Do not honor</network-response-text>
+		<processed-with-network-token type="boolean">true</processed-with-network-token>
+		<credit-card>
+			<is-network-tokenized type="boolean">false</is-network-tokenized>
+			<payment-account-reference>V0010013022298169667504231315</payment-account-reference>
+		</credit-card>
+		<network-token>
+			<bin>411111</bin>
+			<is-network-tokenized type="boolean">true</is-network-tokenized>
+			<payment-account-reference>V0010013022298169667504231315</payment-account-reference>
+		</network-token>
+		<three-d-secure-info>
+			<liability-shifted type="boolean">true</liability-shifted>
+			<liability-shift-possible nil="true"></liability-shift-possible>
+			<status>authenticate_successful</status>
+			<eci-flag>05</eci-flag>
+			<three-d-secure-version>2.2.0</three-d-secure-version>
+			<ds-transaction-id>ds-trans-id</ds-transaction-id>
+		</three-d-secure-info>
+	</transaction>`
+
+	var tx Transaction
+	if err := xml.Unmarshal([]byte(payload), &tx); err != nil {
+		t.Fatal(err)
+	}
+
+	if tx.ProcessorResponseType != "hard_declined" || tx.AdditionalProcessorResponse != "05 : NOT AUTHORISED" {
+		t.Fatalf("unexpected processor response: %q %q", tx.ProcessorResponseType, tx.AdditionalProcessorResponse)
+	}
+	if tx.NetworkResponseCode != "05" || tx.NetworkResponseText != "Do not honor" {
+		t.Fatalf("unexpected network response: %q %q", tx.NetworkResponseCode, tx.NetworkResponseText)
+	}
+	if tx.ProcessedWithNetworkToken == nil || !tx.ProcessedWithNetworkToken.Valid || !tx.ProcessedWithNetworkToken.Bool {
+		t.Fatalf("expected processed with network token, got %+v", tx.ProcessedWithNetworkToken)
+	}
+	if tx.CreditCard.PaymentAccountReference != "V0010013022298169667504231315" || tx.CreditCard.IsNetworkTokenized.Bool {
+		t.Fatalf("unexpected credit card details: %+v", tx.CreditCard)
+	}
+	if tx.NetworkToken == nil || !tx.NetworkToken.IsNetworkTokenized.Bool || tx.NetworkToken.Bin != "411111" {
+		t.Fatalf("unexpected network token details: %+v", tx.NetworkToken)
+	}
+	info := tx.ThreeDSecureInfo
+	if info == nil || !info.LiabilityShifted.Bool || info.LiabilityShiftPossible.Valid || info.ECIFlag != "05" ||
+		info.ThreeDSecureVersion != "2.2.0" || info.DSTransactionID != "ds-trans-id" || info.Status != "authenticate_successful" {
+		t.Fatalf("unexpected three d secure info: %+v", info)
+	}
+}
+
+func TestTransactionRequestOmitsResponseOnlyFields(t *testing.T) {
+	tx := &Transaction{Type: "sale", CreditCard: &CreditCard{Number: "4111111111111111"}}
+
+	b, err := xml.Marshal(tx)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	for _, field := range []string{"network-token", "processed-with-network-token", "three-d-secure-info",
+		"is-network-tokenized", "payment-account-reference", "network-response-code"} {
+		if strings.Contains(string(b), "<"+field) {
+			t.Fatalf("did not expect %s in %s", field, b)
+		}
+	}
+}
