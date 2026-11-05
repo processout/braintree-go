@@ -131,3 +131,27 @@ func TestBraintreeErrorUnmarshalsMerchantAdviceCode(t *testing.T) {
 		t.Fatalf("expected merchant advice code 03, got %q", btErr.Transaction.MerchantAdviceCode)
 	}
 }
+
+func TestTransactionUnmarshalsGatewayRejectionAndSettlementResponse(t *testing.T) {
+	payload := `<transaction>
+		<status>gateway_rejected</status>
+		<gateway-rejection-reason>cvv</gateway-rejection-reason>
+		<processor-settlement-response-code>4001</processor-settlement-response-code>
+		<processor-settlement-response-text>Settlement Declined</processor-settlement-response-text>
+	</transaction>`
+
+	var tx Transaction
+	if err := xml.Unmarshal([]byte(payload), &tx); err != nil {
+		t.Fatal(err)
+	}
+
+	if tx.GatewayRejectionReason != "cvv" {
+		t.Fatalf("expected gateway rejection reason cvv, got %q", tx.GatewayRejectionReason)
+	}
+	if tx.ProcessorSettlementResponseCode != "4001" {
+		t.Fatalf("expected settlement response code 4001, got %q", tx.ProcessorSettlementResponseCode)
+	}
+	if tx.ProcessorSettlementResponseText != "Settlement Declined" {
+		t.Fatalf("expected settlement response text, got %q", tx.ProcessorSettlementResponseText)
+	}
+}

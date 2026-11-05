@@ -61,6 +61,10 @@ type Transaction struct {
 	// MerchantAdviceCode is the Mastercard Merchant Advice Code (MAC), only returned on Mastercard declines
 	MerchantAdviceCode     string `xml:"merchant-advice-code,omitempty"`
 	MerchantAdviceCodeText string `xml:"merchant-advice-code-text,omitempty"`
+	// GatewayRejectionReason is only set when the transaction status is gateway_rejected
+	GatewayRejectionReason          string `xml:"gateway-rejection-reason,omitempty"`
+	ProcessorSettlementResponseCode string `xml:"processor-settlement-response-code,omitempty"`
+	ProcessorSettlementResponseText string `xml:"processor-settlement-response-text,omitempty"`
 
 	SubscriptionID        string        `xml:"subscription-id,omitempty"`
 	Descriptor            *Descriptor   `xml:"descriptor,omitempty"`
